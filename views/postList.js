@@ -1,17 +1,20 @@
-function postList(posts) {
+module.exports = function postList(posts) {
+  console.log(posts);
+  var timeAgo = require("node-time-ago");
+
   const html = `<!DOCTYPE html>
-  <html>
-  <head>
-    <title>Wizard News</title>
-    
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <div class="news-list">
-      <header><img src="/logo.png"/>Wizard News</header>
-      ${posts
-        .map(
-          (post) => `
+    <html>
+      <head>
+        <title>Wizard News</title>
+
+        <link rel="stylesheet" href="/style.css" />
+      </head>
+      <body>
+        <div class="news-list">
+          <header><img src="/logo.png" />Wizard News</header>
+          ${posts
+            .map(
+              (post) => `
         <div class='news-item'>
           <p>
             <span class="news-position">${post.id}. ▲
@@ -19,15 +22,15 @@ function postList(posts) {
             <small>(by ${post.name})</small>
           </p>
           <small class="news-info">
-            ${post.upvotes} upvotes | ${timeAgo(post.date)}
+          ${post.upvotes} upvotes | ${timeAgo(post.date)}
           </small>
           
         </div>
         `
-        )
-        .join("")}
-    </div>
-  </body>
-</html>`;
+            )
+            .join("")}
+        </div>
+      </body>
+    </html>`;
   return html;
-}
+};
